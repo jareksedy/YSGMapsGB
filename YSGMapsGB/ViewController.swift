@@ -11,20 +11,14 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-    let zoomValue: Float = 18
+    let coordinates: [CLLocationCoordinate2D] = []
+    let zoomValue: Float = 25
     
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var locationButton: UIButton!
     
     private func addMarker(position: CLLocationCoordinate2D) {
         let marker = GMSMarker(position: position)
         marker.map = mapView
-    }
-    
-    private func configureMap() {
-        let coordinate = CLLocationCoordinate2D(latitude: 43.238949, longitude: 76.889709)
-        let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: zoomValue)
-        mapView.camera = camera
     }
     
     private func configureLocationManager() {
@@ -33,15 +27,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
-    @IBAction func locationButtonTapped(_ sender: Any) {
-        locationManager.requestLocation()
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate = locations.first?.coordinate {
             let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: zoomValue)
             mapView.camera = camera
             addMarker(position: coordinate)
+            
+            let path = GMSMutablePath()
+            path.add(coordinate)
+            
+            let route = GMSPolyline(path: path)
+            route.map = mapView
         }
     }
     
@@ -51,7 +47,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //configureMap()
         configureLocationManager()
     }
 

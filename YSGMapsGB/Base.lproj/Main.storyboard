@@ -21,28 +21,17 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5I-1t-FJx">
-                                <rect key="frame" x="128" y="807" width="158" height="30"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Мое местоположение"/>
-                                <connections>
-                                    <action selector="locationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OFg-hb-ZXg"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0ZY-Be-FRO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6fA-Be-cNU"/>
-                            <constraint firstItem="t5I-1t-FJx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gml-TW-hxT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="t5I-1t-FJx" secondAttribute="bottom" constant="25" id="LRr-v4-lsf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0ZY-Be-FRO" secondAttribute="trailing" id="T5C-OV-poz"/>
                             <constraint firstItem="0ZY-Be-FRO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c68-un-qae"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0ZY-Be-FRO" secondAttribute="bottom" id="ux1-Uc-mxQ"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="locationButton" destination="t5I-1t-FJx" id="zJp-pt-CGq"/>
                         <outlet property="mapView" destination="0ZY-Be-FRO" id="w8A-wo-XHS"/>
                     </connections>
                 </viewController>
