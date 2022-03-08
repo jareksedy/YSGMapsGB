@@ -7,8 +7,9 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     
     private func configureMap() {
@@ -17,9 +18,22 @@ class ViewController: UIViewController {
         mapView.camera = camera
     }
     
+    private func configureLocationManager() {
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+    }
+    
+    @IBAction func updateLocation(_ sender: Any) {
+    }
+    
+    @IBAction func currentLocation(_ sender: Any) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMap()
+        configureLocationManager()
     }
 
 }
