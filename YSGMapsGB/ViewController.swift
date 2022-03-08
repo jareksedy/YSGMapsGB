@@ -12,7 +12,7 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var coordinates: [CLLocationCoordinate2D] = []
-    let zoomValue: Float = 25
+    let zoomValue: Float = 18
     
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -27,6 +27,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    private func drawRoute() {
+        let path = GMSMutablePath()
+        
+        coordinates.forEach { coordinate in
+            path.add(coordinate)
+        }
+        
+        let route = GMSPolyline(path: path)
+        route.map = mapView
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate = locations.first?.coordinate {
             
@@ -36,14 +47,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             mapView.camera = camera
             addMarker(position: coordinate)
             
-            let path = GMSMutablePath()
-            
-            coordinates.forEach { coordinate in
-                path.add(coordinate)
-            }
-            
-            let route = GMSPolyline(path: path)
-            route.map = mapView
+            drawRoute()
         }
     }
     
